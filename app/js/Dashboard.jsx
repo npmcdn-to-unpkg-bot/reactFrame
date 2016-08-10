@@ -20,7 +20,7 @@ const Dashboard = React.createClass({
                       <Menu.Item key="5"><Link to="/mapthree">MapThree</Link></Menu.Item>
                   </Menu>
               </Col>
-              <Col span={20} style={{paddingTop:20}}>
+              <Col span={20}>
                   {this.props.children}
               </Col>
           </Row>
