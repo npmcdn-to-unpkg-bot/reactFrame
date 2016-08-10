@@ -18,14 +18,14 @@ webpackDevServer.listen(3000, 'localhost', function(err, result) {
   if (err) console.log(err);
   console.log('Listening at localhost:3000');
 });
-// var app=webpackDevServer.app;
-// app.use(function(req, res,next){
-//   var path=url.parse(req.url).pathname;
-//   if (typeof route[req.method + ' ' + path] == 'function') {
-//     console.log('matched');
-//     route[req.method + ' ' + path](req,res,next);
-//     res.end();
-//   }else{
-//     next();
-//   }
-// });
+var app=webpackDevServer.app;
+app.use(function(req, res,next){
+  var path=url.parse(req.url).pathname;
+  if (typeof route[req.method + ' ' + path] == 'function') {
+    console.log('matched');
+    route[req.method + ' ' + path](req,res,next);
+    res.end();
+  }else{
+    next();
+  }
+});

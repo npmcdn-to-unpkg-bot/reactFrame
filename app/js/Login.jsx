@@ -1,47 +1,64 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import auth from '../utils/auth.js'
+import { Form, Input, Button, Checkbox } from 'antd';
+const FormItem = Form.Item;
 
-const Login = React.createClass({
+let Login = React.createClass({
   getInitialState() {
     return {
-      error: false
+      error: false,
+      loggedIn: auth.loggedIn()
+    }
+  },
+
+  componentWillMount() {
+    if(!!this.state.loggedIn){
+      this.props.router.replace('/dashboard')
+    }else{
+      this.props.router.replace('/login')
     }
   },
 
   handleSubmit(event) {
-    event.preventDefault()
-
-    const email = this.refs.email.value
-    const pass = this.refs.pass.value
+    event.preventDefault();
+    const email = this.props.form.getFieldsValue().userName;
+    const pass = this.props.form.getFieldsValue().password;
 
     auth.login(email, pass, (loggedIn) => {
       if (!loggedIn)
-        return this.setState({ error: true })
+        return this.setState({ error: true });
 
-      const { location } = this.props
+      const { location } = this.props;
 
       if (location.state && location.state.nextPathname) {
         this.props.router.replace(location.state.nextPathname)
       } else {
-        this.props.router.replace('/')
+
+        this.props.router.replace('/dashboard')
       }
     })
+
   },
 
   render() {
+    const { getFieldProps } = this.props.form;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
-        <label><input ref="pass" placeholder="password" /></label> (hint: password1)<br />
-        <button type="submit">login</button>
-        {this.state.error && (
-          <p>Bad login information</p>
-        )}
-      </form>
+    <Form inline onSubmit={this.handleSubmit}>
+      <FormItem label="账户">
+        <Input placeholder="请输入账户名" {...getFieldProps('userName')}/>
+      </FormItem>
+      <FormItem label="密码">
+        <Input type="password" placeholder="请输入密码" {...getFieldProps('password')}/>
+      </FormItem>
+      <Button type="primary" htmlType="submit">登录</Button>
+      {this.state.error && (<p>Bad login information</p>)}
+    </Form>
+
     )
   }
 
 })
+Login = Form.create()(Login);
 
 export default withRouter(Login)
