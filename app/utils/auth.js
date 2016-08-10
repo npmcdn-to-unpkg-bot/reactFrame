@@ -1,17 +1,19 @@
 /**
  * Created by tracy on 16/8/9.
  */
+var $=require('../../bower_components/jquery/dist/jquery');
 module.exports = {
     login(email, pass, cb) {
-        cb = arguments[arguments.length - 1]
-        if (localStorage.token) {
+        cb = arguments[arguments.length - 1];
+        if (document.cookie) {
             if (cb) cb(true)
             this.onChange(true)
             return
         }
-        pretendRequest(email, pass, (res) => {
+        loginRequest(email, pass, (res) => {
             if (res.authenticated) {
-                localStorage.token = res.token
+                // localStorage.token = res.token
+                document.cookie = "token=" + res.token;
                 if (cb) cb(true)
                 this.onChange(true)
             } else {
@@ -21,32 +23,53 @@ module.exports = {
         })
     },
 
-    getToken() {
-        return localStorage.token
-    },
-
     logout(cb) {
-        delete localStorage.token
+        delete document.cookie
         if (cb) cb()
         this.onChange(false)
     },
 
     loggedIn() {
-        return !!localStorage.token
+        return !!document.cookie;
     },
 
-    onChange() {}
+    onChange() {},
+    getToken() {
+        var tokens  = document.cookie.split('=');
+        return tokens[1];
+    }
+
 }
 
-function pretendRequest(email, pass, cb) {
-    setTimeout(() => {
-        if (email === '123' && pass === '123') {
-            cb({
-                authenticated: true,
-                token: Math.random().toString(36).substring(7)
-            })
-        } else {
-            cb({ authenticated: false })
-        }
-    }, 0)
+function loginRequest(email, pass, cb) {
+    var info = {};
+    info.username = email;
+    info.password = pass;
+    var someurl = "http://123.56.205.244:8025/api/authentication";
+    var option = {
+        type: "post",
+        data: info,
+    };
+    if (info.username && info.password) {
+        $.ajax(someurl, option).done(function (data) {
+            if (data.status == 1) {
+                cb({
+                    authenticated: true,
+                    token: data.accessToken
+                })
+            } else if(data.status == -1){
+                cb({ authenticated: false })
+            }else{
+                console.log(data)
+            }
+        }).fail(function (xhr, status) {
+            alert();
+            // console.log(status);
+            //ajaxLog('失败: ' + xhr.status + ', 原因: ' + status);
+        }).always(function () {
+            // console.log("成功");
+            // ajaxLog('请求完成: 无论成功或失败都会调用');
+        });
+    }
 }
+

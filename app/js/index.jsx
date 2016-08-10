@@ -12,6 +12,7 @@ import MapTwo from './../js/MapTwo'
 import MapThree from './../js/MapThree'
 import auth from './../utils/auth'
 import 'antd/dist/antd.less';
+import './../less/main.less';
 
 
 
