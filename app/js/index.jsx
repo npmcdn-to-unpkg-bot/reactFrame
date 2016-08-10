@@ -9,9 +9,10 @@ import Dashboard from './../js/Dashboard'
 import Person from './../js/Person'
 import MapOne from './../js/MapOne'
 import MapTwo from './../js/MapTwo'
-
+import MapThree from './../js/MapThree'
 import auth from './../utils/auth'
 import 'antd/dist/antd.less';
+
 
 
 function requireAuth(nextState, replace) {
@@ -36,6 +37,7 @@ render((
             <Route path="/about" component={About}/>
             <Route path="/mapone" component={MapOne}/>
             <Route path="/maptwo" component={MapTwo}/>
+            <Route path="/mapthree" component={MapThree}/>
         </Route>
     </Router>
 ), document.getElementById('app-index'))

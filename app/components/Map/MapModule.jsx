@@ -1,8 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { render } from 'react-dom';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
-import './../less/mapone.less';
-const MapOne = React.createClass({
+const MapModule = React.createClass({
     render() {
         const position = [51.505, -0.09];
         return (
@@ -21,4 +20,4 @@ const MapOne = React.createClass({
     }
 })
 
-export default MapOne
+export default MapModule
