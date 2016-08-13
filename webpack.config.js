@@ -22,7 +22,7 @@ module.exports = {
 	},
 	resolve:{
 		root:path.resolve(__dirname ,"app"),
-		extensions:['','.js','.less','.jsx','.jpg','.jpeg','.gif']
+		extensions:['','.js','.less','.jsx','.jpg','.jpeg','.gif','.png']
 	},
 	module:{
 		loaders:[{
@@ -33,7 +33,7 @@ module.exports = {
 		{
 			test:/\.js$/,
 			exclude: /(node_modules|bower_components)/,
-			loader:'babel-loader?presets[]=es2015'
+			loader:'babel-loader?presets[]=es2015&ignore=buffer'
 		},
 		{
 			test:/\.less$/,
@@ -41,6 +41,9 @@ module.exports = {
 		},{
 			test:/\.(jpg|png|gif)$/,
 			loader:'url-loader?limit=8192&name=[path][name].[ext]'
+		},{ 
+			 test: /\.css$/, 
+			 loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader")
 		}
 		]
 	},
@@ -51,6 +54,7 @@ module.exports = {
 		new ExtractTextPlugin('css/[name].css',{
 			allChunks:true
 		}),
+		new webpack.ContextReplacementPlugin(/buffer/,require('buffer')),
 		new HtmlWebpackPlugin({
 			filename:'index.html',
 			template:'index.html',

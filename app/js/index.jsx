@@ -2,14 +2,17 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router'
 import Login from './../js/Login'
-import Logout from './../js/Logout'
 import App from './../js/App'
-import About from './../js/About'
 import Dashboard from './../js/Dashboard'
 import Person from './../js/Person'
-import MapOne from './../js/MapOne'
-import MapTwo from './../js/MapTwo'
-import MapThree from './../js/MapThree'
+import Groundinfo from './../js/Groundinfo'
+import Farm from './../js/Farm'
+import Area from './../js/Area'
+import Groundsearch from './../js/Groundsearch'
+import Growth from './../js/Growth'
+import Record from './../js/Record'
+import Weather from './../js/Weather'
+import Insect from './../js/Insect'
 import auth from './../utils/auth'
 import 'antd/dist/antd.less';
 import './../less/main.less';
@@ -29,16 +32,18 @@ render((
         <Route path="/" component={App}>
             <IndexRedirect to="/login" />
             <Route path="login" component={Login} />
-            <Route path="logout" component={Logout} />
-
         </Route>
 
         <Route path="dashboard" component={Dashboard} onEnter={requireAuth} >
             <Route path="/person" component={Person}/>
-            <Route path="/about" component={About}/>
-            <Route path="/mapone" component={MapOne}/>
-            <Route path="/maptwo" component={MapTwo}/>
-            <Route path="/mapthree" component={MapThree}/>
+            <Route path="/groundinfo" component={Groundinfo}/>
+            <Route path="/farm" component={Farm}/>
+            <Route path="/area" component={Area}/>
+            <Route path="/groundsearch" component={Groundsearch}/>
+            <Route path="/growth" component={Growth}/>
+            <Route path="/record" component={Record}/>
+            <Route path="/weather" component={Weather}/>
+            <Route path="/insect" component={Insect}/>
         </Route>
     </Router>
 ), document.getElementById('app-index'))

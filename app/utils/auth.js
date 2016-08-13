@@ -24,7 +24,7 @@ module.exports = {
     },
 
     logout(cb) {
-        delete document.cookie
+        DelCookie("token");
         if (cb) cb()
         this.onChange(false)
     },
@@ -73,3 +73,8 @@ function loginRequest(email, pass, cb) {
     }
 }
 
+function DelCookie(name) {
+var exp = new Date();
+exp.setTime(exp.getTime() - 1);
+document.cookie = name + "=; expires=" + exp.toGMTString();
+}

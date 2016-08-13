@@ -1,0 +1,189 @@
+.iconfont {
+    /*font-family:"iconfont" !important;*/
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/*图例*/
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.tlbtn {
+    background-color: #353b65;
+    border-color: #353b65;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 4px 4px 1px 4px;
+    vertical-align: middle;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    white-space: nowrap;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
+    transition: background-color .3s ease-out, border-color .3s ease-out;
+}
+
+.tlbtn:hover {
+    background-color: #0461a3;
+}
+
+.topheaderL {
+    height: 40px;
+    background-color: #0461a3;
+    line-height: 40px;
+}
+
+.topheaderL .name {
+    margin-left: 0px;
+    float: left;
+    color: white;
+    font-weight: bolder;
+    font-size: 14px;
+}
+
+.tl-toolbar {
+    opacity: 0.9;
+    /*position: absolute;*/
+    width: 145px;
+    z-index: 36;
+    color: black;
+    background-color: #343a43;
+    margin-bottom: 55px;
+}
+
+.shadowdivL {
+    background-color: white;
+}
+
+.shadowdivL ul {
+    overflow: hidden;
+}
+
+.tl-toolbar .shadowdivL ul li {
+    float: left;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    /*border-bottom: 1px dashed #00a0e8;*/
+    font-size: 12px;
+    /*cursor: pointer;*/
+}
+
+
+/*.tl-toolbar .shadowdivL ul li:hover{
+    background-color: rgba(255,255,255,0.2);
+}*/
+
+.tl-toolbar .shadowdivL ul li a {
+    display: block;
+    box-sizing: content-box;
+    padding: 12.5px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    float: left;
+    /*background-image: url(../images/exit.png);*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    /*padding-left:15px;*/
+}
+
+.legend-title {
+    float: left;
+    margin: 0;
+    padding: 0 0 0 3px;
+    height: 45px;
+    line-height: 45px;
+}
+
+.legend {
+    padding: 0;
+}
+
+.leaflet-right .leaflet-control {
+    margin-bottom: -30px;
+}
+
+
+/*临时图例宽带*/
+
+.legend div {
+    width: 102px;
+}
+
+.legend {
+    background-color: transparent;
+}
+
+
+/*水平图例css*/
+
+
+/*#tinLegend{
+    position: absolute;
+    bottom: 5px;
+    background: grey;
+    height: 70px;
+}*/
+
+#tinLegend {
+    margin-bottom: 80px;
+}
+
+.tin-legend {
+    /*bottom: 10px;
+    left: 20px;*/
+    width: 300px;
+    background-color: rgb(0, 160, 232);
+    padding: 15px;
+    /*position: absolute;*/
+}
+
+.tin-legend-bar {
+    height: 15px;
+    display: inline-block;
+}
+
+.tin-legend-labels p {
+    color: #fff;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.tin-legend-labels {
+    width: 100%;
+    height: 30px;
+}
+
+.tin-legend-labels ul {
+    overflow: hidden;
+}
+
+.tin-legend-labels ul li {
+    color: #fff;
+    float: left;
+    font-size: 13px;
+    text-align: center;
+}
